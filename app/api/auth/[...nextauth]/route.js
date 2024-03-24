@@ -17,26 +17,28 @@ const handler = NextAuth({
         })
 
         session.user.id = sessionUser._id.toString();
+        return session;
     },
     async signIn({ profile }) {
         try {
             await connectToDB();
             const userExists = await User.findOne({
-                email: profile.email,
+                email: profile.email
             });
-
+            // If user does not exist, create a new user
             if (!userExists) {
                 await User.create({
                     email: profile.email,
-                    username: profile.username.replace(' ', '').toLowerCase(),
+                    username: profile.name.replace(' ', '').toLowerCase(),
                     image: profile.picture
-                }
+                });
+            } 
             return true;
-            } catch (error) {
+        }catch (error) {
                 console.log(error);
                 return false;
             }
-        }
+    }
 })
 
 export { handler as GET, handler as POST }
