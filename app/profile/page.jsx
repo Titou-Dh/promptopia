@@ -30,16 +30,15 @@ const MyProfile = () => {
 
 
     return (
-        <div>
-            <Profile
-                name="My"
-                desc="welcome to yout personalized prifile page"
-                data={posts}
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
+        <Profile
+            name="My"
+            desc="welcome to yout personalized prifile page"
+            data={posts}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
 
-            />
-        </div>
+        />
+
     )
 }
 
